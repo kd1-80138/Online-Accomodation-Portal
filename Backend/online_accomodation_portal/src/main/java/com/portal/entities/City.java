@@ -1,7 +1,11 @@
 package com.portal.entities;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "city")
 public class City extends BaseEntity {
 
 	@Column(name = "cirt_name", nullable = false, length = 25)

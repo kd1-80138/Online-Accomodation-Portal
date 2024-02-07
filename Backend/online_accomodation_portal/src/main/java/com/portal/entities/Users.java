@@ -1,6 +1,7 @@
 package com.portal.entities;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -13,6 +14,7 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
+@Entity
 @Table(name = "users")
 public class Users extends BaseEntity {
 
