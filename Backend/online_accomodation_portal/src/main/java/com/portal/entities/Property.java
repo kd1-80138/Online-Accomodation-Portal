@@ -1,9 +1,11 @@
 package com.portal.entities;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "propert_details")
+@Table(name = "property_details")
 public class Property extends BaseEntity {
 
 	@ManyToOne
@@ -11,7 +13,7 @@ public class Property extends BaseEntity {
 	private Users user;
 
 	@OneToOne
-	@JoinColumn(name = "category_id")
+	@JoinColumn(name = "flat_category_id")
 	private FlatCategory category;
 
 	@Column(length = 150)

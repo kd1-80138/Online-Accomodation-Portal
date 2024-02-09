@@ -2,6 +2,8 @@ package com.portal.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,6 +18,19 @@ public class City extends BaseEntity {
 
 	@Column(name = "pin_code", nullable = false)
 	private int pincode;
+
+	@OneToOne
+	@JoinColumn(name="user_id")
+	private Users user;
+	
+	
+	public Users getUser() {
+		return user;
+	}
+
+	public void setUser(Users user) {
+		this.user = user;
+	}
 
 	public City() {
 

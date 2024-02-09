@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
@@ -13,17 +14,18 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "property_booking")
-public class PropertyBooking {
+public class PropertyBooking extends BaseEntity{
 
 	@OneToOne
 	@JoinColumn(name = "flat_Category_id")
 	private FlatCategory flatCategoryId;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private Users userId;
 
-	@Column(name = "user_id")
-	private User userId;
-
-	// one to one in PropertyDetails
-	@Column(name = "property_id")
+	@OneToOne
+	@JoinColumn(name = "property_id")
 	private Property propertyId;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
@@ -42,11 +44,11 @@ public class PropertyBooking {
 		this.flatCategoryId = flatCategoryId;
 	}
 
-	public User getUserId() {
+	public Users getUserId() {
 		return userId;
 	}
 
-	public void setUserId(User userId) {
+	public void setUserId(Users userId) {
 		this.userId = userId;
 	}
 

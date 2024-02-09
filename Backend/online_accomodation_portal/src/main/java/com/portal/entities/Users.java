@@ -1,5 +1,8 @@
 package com.portal.entities;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -8,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -28,14 +32,20 @@ public class Users extends BaseEntity {
 	private long mobileNo;
 
 	@Column(name = "email_id", unique = true, nullable = false)
-	private String emaiId;
+	private String email;
 
 	@Column(name = "password", length = 30, nullable = false)
 	private String password;
 
-	@OneToOne
-	@JoinColumn(name = "city_id")
-	private City cityId;
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Property> propertyList;
+
+	@OneToMany(mappedBy = "userId", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<PropertyBooking> bookingList;
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<PropertyReview> reviewList;
+
 
 	@Column(name = "user_type")
 	@Enumerated(EnumType.STRING)
@@ -46,6 +56,7 @@ public class Users extends BaseEntity {
 	private Status status;
 
 	public Users() {
+		
 
 	}
 
@@ -73,12 +84,12 @@ public class Users extends BaseEntity {
 		this.mobileNo = mobileNo;
 	}
 
-	public String getEmaiId() {
-		return emaiId;
+	public String getEmail() {
+		return email;
 	}
 
 	public void setEmaiId(String emaiId) {
-		this.emaiId = emaiId;
+		this.email = emaiId;
 	}
 
 	public String getPassword() {
@@ -89,16 +100,16 @@ public class Users extends BaseEntity {
 		this.password = password;
 	}
 
-	public City getCityId() {
-		return cityId;
-	}
-
-	public void setCityId(City cityId) {
-		this.cityId = cityId;
-	}
-
 	public User getUserType() {
 		return userType;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public void setUserType(User userType) {
