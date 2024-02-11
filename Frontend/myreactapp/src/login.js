@@ -1,93 +1,108 @@
 import { useState } from "react";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import axios from 'axios';
+import { MDBBtn,MDBContainer, MDBCard, MDBCardBody, MDBCardImage,MDBRow, MDBCol,MDBIcon, MDBInput} from 'mdb-react-ui-kit';
 
 function Login() {
-    const [email,setEmail] = useState("");
-    var [emailError ,setEmailError]=useState("");
-    const [password,setPassword]=useState("");
-    var [passwordError,setPasswordError]= useState("");  
-    const [loginCredentials,setLoginCredentialls]= useState({email:"", password:""}); 
+  const [email, setEmail] = useState("");
+  var [emailError, setEmailError] = useState("");
+  const [password, setPassword] = useState("");
+  var [passwordError, setPasswordError] = useState("");
+  const [loginCredentials, setLoginCredentialls] = useState({ email: "", password: "" });
 
-    const url = "http://127.0.0.1:9999/login";
+  const url = "http://127.0.0.1:9999/login";
 
+  const OnTextChange = (args) => {
+    setEmail(args.target.value);
+  };
 
-    const OnTextChange= (args)=>{
-            setEmail(args.target.value);
+  const OnTextChangePassword = (args) => {
+    setPassword(args.target.value);
+  };
 
-    } ;
+  const Validate = () => {
+    //initially set to empty
+    setEmailError("");
+    setPasswordError("");
 
-    const OnTextChangePassword =(args)=>{
-        setPassword(args.target.value);
-    };
-    const Validate=()=>{
-        //initially set to empty 
-        setEmailError("");
-        setPasswordError("");
+    if (email === "") {
+      setEmailError("*Please Enter Your Email");
+      return;
+    }
+    if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+      setEmailError("*Please enter a valid email");
+      return;
+    }
+    if (password === "") {
+      setPasswordError("*Please Enter your Password");
+      return;
+    }
+    if (password.length < 8) {
+      setPasswordError("*Password must be  8 characters or Longer");
+      return;
+    }
+    setLoginCredentialls({ email: email, password: password });
+    debugger;
+    console.log(loginCredentials.email, loginCredentials.password);
+    //validating user using data and rendering home page
+  };
 
-        if(email===""){
-                setEmailError("*Please Enter Your Email")
-                return;
-        }
-        if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
-            setEmailError("*Please enter a valid email")
-            return
-        }
-        if(""===password)
-        {
-            setPasswordError("*Please Enter your Password");
-            return ;
-        }
-        if(password.length<8){
-            setPasswordError("*Password must be  8 characters or Longer");
-            return;
-        }
-        setLoginCredentialls({email:email, password:password});
-        debugger;
-        console.log(loginCredentials.email , loginCredentials.password);
-        //validating user using data and rendering home page 
-        
-
-
-    };
-    
-    return (
-        <div className="container" >
-            <center>
-                <div className="container">
-                    <h1 className="text-primary"> LogIn </h1>
-                    <div> 
-                    <input
-                value={email}
-                onChange={OnTextChange}
-                placeholder="Enter your email here"
-                name= "email" /> <br/>
+  return (
+    <MDBContainer className="my-5">
+      <MDBCard>
+      <MDBRow className='g-0'>
+      <MDBCol md='6'>
+            <MDBCardImage src={require("./logo.png")} alt="logo" className='rounded-start w-100'/>
+          </MDBCol>
+          <MDBCol md='6'>
+            <MDBCardBody className='d-flex flex-column'>
+           
+          <div>
+          <h5 className="fw-normal my-3 pb-1" style={{letterSpacing: '1px'}}>Sign into your account </h5>
+            <MDBInput
+              wrapperClass=""
+              id='formControlLg'
+              type='email' 
+              size="lg"
+              value={email}
+              onChange={OnTextChange}
+              placeholder="Enter your email here"
+              name="email"
+             className="form-control"
+            />
             <label className="text-danger">{emailError}</label>
-            </div>
+          </div>
+          
+          <div>
+            <MDBInput
+              wrapperClass=""
+              id='formControlLg'  
+              type="password"
+              size="lg"
+              value={password}
+              onChange={OnTextChangePassword}
+              placeholder="Enter your password here"
+              name="password"
+              className="form-control"
+            />
+            <label className="text-danger">{passwordError}</label>
+            <br />
             <br/>
+            {/* <MDBBtn className="mb-4" color='dark' size='lg'>Login</MDBBtn> */}
+            <button className="btn btn-primary px-5"  onClick={Validate}>
+              LogIn
+            </button>
             <br/>
-                    <div>
-                         <input
-                           type="password"
-                           value={password}
-                           onChange={OnTextChangePassword}
-                            placeholder="Enter your password here"
-                        name= "password" /><br/>
-                        <label className="text-danger">{passwordError}</label>
-                        <br/>
-                        <br/>
-                        <button className="btn btn-primary" onClick={Validate}>LogIn</button>
-                      
-                   </div>
-
-
-
-                </div>
-                
-            </center>
-        </div>
-
-     );
+            <a className="small text-muted" href="#!">Forgot password?</a>
+              <p className="mb-5 pb-lg-2" style={{color: '#393f81'}}>Don't have an account? <a href="#!" style={{color: '#393f81'}}>Register here</a></p>
+          </div>
+          </MDBCardBody>
+          </MDBCol>
+          </MDBRow>
+        </MDBCard>
+    </MDBContainer>
+    
+  );
 }
 
 export default Login;
