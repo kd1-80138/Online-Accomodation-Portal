@@ -13,7 +13,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Table(name = "property_reviews")
+@Table(name = "Property_Reviews")
 @NoArgsConstructor
 @Getter
 @Setter
@@ -30,7 +30,7 @@ public class PropertyReview extends BaseEntity {
 	@Column(length = 250)
 	private String comment;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private Users user;
 }

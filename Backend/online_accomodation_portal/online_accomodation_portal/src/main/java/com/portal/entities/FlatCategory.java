@@ -1,10 +1,16 @@
 package com.portal.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
+import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.action.internal.OrphanRemovalAction;
+import org.hibernate.type.TrueFalseType;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,20 +18,63 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "flat_category")
+@Table(name="flat_category")
 @Getter
 @Setter
-@NoArgsConstructor
+@ToString
 public class FlatCategory extends BaseEntity {
-
-	@OneToOne
-	@JoinColumn(name = "property_id")
-	private Property property;
-
-	@Column(nullable = false)
-	private String category;
-
-	@Column(length = 50)
+	
+	@Column
+	private String categoryName;
+	
+	@Column(length =50)
 	private String description;
+	
+	
 
+	public FlatCategory() {
+
+		// TODO Auto-generated constructor stub
+	}
+	
+
+
+
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+
+
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+
+
+
+
+	public String getDescription() {
+		return description;
+	}
+
+
+
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
+
+
+	@Override
+	public String toString() {
+		return "FlatCategory [categoryName=" + categoryName + ", description=" + description + "]";
+	}
+	
+	
+	
+	
+	
 }

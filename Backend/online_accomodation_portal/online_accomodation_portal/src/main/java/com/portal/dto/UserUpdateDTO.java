@@ -10,7 +10,6 @@ import com.portal.entities.Gender;
 import com.portal.entities.Status;
 import com.portal.entities.UserRole;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,10 +17,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
-public class UserDTO {
+public class UserUpdateDTO {
 
-	@JsonProperty(access = Access.READ_ONLY) // used during serialization
 	private Long id;
 
 	@NotBlank
