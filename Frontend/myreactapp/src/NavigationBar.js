@@ -6,10 +6,10 @@ import { Link } from 'react-router-dom';
 const NavigationBar = () => {
   return (
     
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" >
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-      <ul class ="navbar-nav mr-auto" >
-        <li class="nav-item active">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light" >
+      <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <ul className ="navbar-nav mr-auto" >
+        <li className="nav-item active">
           <Link to="/" >Home</Link>
         </li>
         <li>

@@ -1,11 +1,17 @@
-import Home from "./Home";
-import About from "./About";
-import Contact from "./Contact";
-import Login from "./login";
-import NavigationBar from "./NavigationBar";
+'use client'
+
+import Home from "./pages/home/Home";
+import About from "./pages/about/About";
+import AddProperty from "./components/property/AddProperty";
+import Contact from "./pages/contact/Contact";
+import Login from "./pages/signin/signin";
+import Register  from "./pages/signup";
+import Footer from "./components/Footer/Footer";
+import NavigationBar from "./components/Navbar/NavigationBar";
 import Image from "./Image";
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
-import { Route, Switch} from 'react-router-dom';
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Route, Routes} from 'react-router-dom';
 
 function Launcher()
 {
@@ -14,15 +20,17 @@ function Launcher()
     <div className="container">
         <Image/> 
         <NavigationBar/>
-        
-        <Switch>
-                    <Route exact path="/" component={Home}  />
-                    <Route exact path="/home" component={Home}  />
-                    <Route exact path="/about" component={About}  />
-                    <Route exact path="/login" component={Login}  />
-                    <Route exact path="/contact" component={Contact} />
-                    <Route path="**" component={Contact}  />
-        </Switch>            
+            <Routes>
+                        <Route  path="/" element={<Home/>}></Route>
+                        <Route exact path="/home" element={<Home/>} ></Route>
+                        <Route exact path="/about" element={<About/>}></Route>
+                        <Route exact path="/login" element={<Login/>} ></Route>
+                        <Route exact path="/contact" element={<Contact/>} ></Route>     
+                        <Route exact path="/Register" element={<Register/>} > </Route>                                
+                        <Route path="**" component={<Home/>}  />
+            </Routes>
+            <ToastContainer/>
+        <Footer/>            
     </div>
     );
 }
