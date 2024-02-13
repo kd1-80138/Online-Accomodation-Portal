@@ -22,7 +22,7 @@ public class PropertyBooking extends BaseEntity{
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-	private Users userId;
+	private User userId;
 
 	@OneToOne
 	@JoinColumn(name = "property_id")
@@ -44,11 +44,11 @@ public class PropertyBooking extends BaseEntity{
 		this.flatCategoryId = flatCategoryId;
 	}
 
-	public Users getUserId() {
+	public User getUserId() {
 		return userId;
 	}
 
-	public void setUserId(Users userId) {
+	public void setUserId(User userId) {
 		this.userId = userId;
 	}
 

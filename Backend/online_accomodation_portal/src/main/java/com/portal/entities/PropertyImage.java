@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Table(name = "property_image")
 public class PropertyImage extends BaseEntity {
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY )
 	@JoinColumn(name = "property_id")
 	private Property propertyId;
 

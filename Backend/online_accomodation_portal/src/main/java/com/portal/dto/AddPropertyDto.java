@@ -4,74 +4,53 @@ import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
-import com.portal.entities.Status;
-import com.portal.entities.Users;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-
-@ToString
 public class AddPropertyDto {
-	
+
 	@NotBlank
 	@JsonProperty(access = Access.WRITE_ONLY)
-	private Long   userId ;
-	
-	
-	
+	private Long userId;
+
 	@NotBlank(message = "Provide Instructions")
 	@JsonProperty(access = Access.WRITE_ONLY)
-	 private  String instructions ;
-	
-	
+	private String instructions;
+
 	@JsonProperty(access = Access.WRITE_ONLY)
-	private int isAvailable=1;
-	
-	@NotBlank(message="Deposit Required")
+	private int isAvailable = 1;
+
+	@NotBlank(message = "Deposit Required")
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private int deposit;
-	
+
 	@NotBlank
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private int rent;
-	
+
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private String society;
-	
+
 	@JsonProperty(access = Access.WRITE_ONLY)
-	private  String landmark;
-	
+	private String landmark;
+
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private String area;
-	
+
 	@JsonProperty(access = Access.WRITE_ONLY)
-	private 	String cityName;
-	
+	private String cityName;
+
 	@JsonProperty(access = Access.WRITE_ONLY)
-	private String  state;
-	
+	private String state;
+
 	@JsonProperty(access = Access.WRITE_ONLY)
-	private  Long pincode;
-	@NotBlank(message="Category Required")
+	private Long pincode;
+	@NotBlank(message = "Category Required")
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private String categoryName;
-	
-	
-	@NotBlank(message ="Please Provide Description")
+
+	@NotBlank(message = "Please Provide Description")
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private String description;
-	
-	
-		
-	
-	
-	
-	
-	
-	
-	
+
 	public Long getUserId() {
 		return userId;
 	}
@@ -184,6 +163,4 @@ public class AddPropertyDto {
 				+ ", state=" + state + ", pincode=" + pincode + "]";
 	}
 
-	
-	
 }
